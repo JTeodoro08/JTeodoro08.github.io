@@ -2,31 +2,41 @@
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@200;400&display=swap');
 
 :root, :root[data-theme='dark'] {
+  /* Cores principais */
   --primary-color: #F0F0F0;
-
   --primary-bg-color: #111217;
   --secondary-bg-color: #28292E;
   --primary-border-color: #28292E;
-	--secondary-border-color: #56575A;
+  --secondary-border-color: #56575A;
 
+  /* Texto e elementos visuais */
   --title-color: #F0F0F0;
   --text-color: #9A9A9C;
   --link-color: #9A9A9C;
   --icon-color: #C7C8C9;
+
+  /* Hover e interatividade */
+  --hover-bg-color: #28292E;
+  --hover-text-color: #F0F0F0;
 }
 
 :root[data-theme='light'] {
+  /* Cores principais */
   --primary-color: #0B0B0F;
+  --primary-bg-color: #E9E9E9;
+  --secondary-bg-color: #C7C8C9;
+  --primary-border-color: #C7C8C9;
+  --secondary-border-color: #9A9A9C;
 
-	--primary-bg-color: #E9E9E9;
-	--secondary-bg-color: #C7C8C9;
-	--primary-border-color: #C7C8C9;
-	--secondary-border-color: #9A9A9C;
+  /* Texto e elementos visuais */
+  --title-color: #0B0B0F;
+  --text-color: #28292E;
+  --link-color: #28292E;
+  --icon-color: #56575A;
 
-	--title-color: #0B0B0F;
-	--text-color: #28292E;
-	--link-color: #28292E;
-	--icon-color: #56575A;
+  /* Hover e interatividade */
+  --hover-bg-color: #F5F5F5; /* Fundo mais claro no hover */
+  --hover-text-color: #0B0B0F; /* Contraste escuro no hover */
 }
 
 html[data-theme='light'] .brand__logo {
@@ -53,70 +63,72 @@ body {
   color: var(--text-color);
 }
 
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 0.5rem;
 }
-
 ::-webkit-scrollbar-track {
   background-color: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: var(--secondary-bg-color);
-  border-radius: 50rem;
+  background-color: var(--secondary-bg-color);
+  border-radius: 1rem;
+  transition: background-color 0.3s ease-in-out;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-border-color);
 }
 
+
+
+/* Links e Ícones */
 a {
   text-decoration: none;
   color: var(--text-color);
+  transition: color 0.3s ease-in-out;
 }
-
-a:hover {
+a:hover, a:focus {
   color: var(--primary-color);
 }
 
 i {
   color: var(--icon-color);
+  transition: color 0.3s ease-in-out;
+}
+i:hover {
+  color: var(--primary-color);
 }
 
+/* Textos */
 b {
-  font-weight: 400;
+  font-weight: 500;
 }
-
+h1, h2, h3, h4 {
+  font-family: 'League Spartan', sans-serif;
+  text-transform: uppercase;
+  color: var(--title-color);
+}
 h1 {
-  font-size: 2.5rem;
+  font-size: 1rem;
   font-weight: 200;
 }
-
 h2 {
   font-size: 2rem;
   text-align: center;
-  letter-spacing: 0.4rem;
+  letter-spacing: 0.3rem;
 }
-
 h3 {
-  font-size: 1.55rem;
-  text-align: left;
+  font-size: 1.6rem;
 }
-
 h4 {
-  color: var(--primary-color);
+  font-size: 1.2rem;
   font-weight: 400;
-  font-size: 1.15rem;
-  text-align: left;
+  color: var(--primary-color);
 }
-
-h1, h2, h3 {
-  font-family: 'League Spartan', Tahoma, Geneva, Verdana, sans-serif;
-  text-transform: uppercase;
-  color: var(--title-color);
-  font-weight: 200;
-}
-
 p, span, li {
   font-size: 1rem;
+  line-height: 1.6;
 }
-
 p {
   text-align: justify;
 }
@@ -134,11 +146,17 @@ p {
 .header__toggle {
   display: flex;
   justify-content: flex-end;
+
 }
 
 .header__brand .brand__logo {
   width: 4rem;
   height: 4rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.header__brand .brand__logo:hover {
+  transform: scale(1.1);
 }
 
 #toggleTheme {
@@ -216,48 +234,58 @@ p {
   justify-content: center;
   align-items: center;
   gap: 0.625rem;
-  width: 100%;
+  width: auto;
   background: transparent;
-  border-radius: 3.125rem;
-  border: none;
+  border-radius: 50px; /* Borda arredondada mais consistente */
+  border: 1px solid transparent; /* Adicionado para hover refinado */
   padding: 0.875rem 1.5rem;
-  transition: ease-in-out .3s;
   cursor: pointer;
   color: var(--primary-color);
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
 .btn:hover {
   transform: scale(1.05);
-  transition: ease-in-out .3s;
+  background-color: var(--secondary-bg-color);
+  color: var(--text-color); /* Contraste melhor no texto */
+  border-color: var(--primary-color); /* Adicionado destaque na borda */
+  
 }
-
 .btn span, .btn i {
   font-size: 1.25rem;
   text-transform: uppercase;
 }
-
-.btn--primary span {
-  color: var(--primary-color);
+.btn--primary {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border-color: var(--primary-color); /* Destaca borda do botão */
 }
 
-.btn--primary {
-  border: 1px solid var(--primary-color);
+.btn--primary:hover {
+  background-color: var(--secondary-bg-color); /* Fundo alternativo no hover */
+  color: var(--primary-color); /* Texto com maior contraste */
+  border-color: var(--primary-color);
+}
+
+.btn--primary span {
+  color: var(--text-color);
 }
 
 main, .projects, .about, .contact {
-  padding: 2.5rem 1rem;
+  padding: 2rem 1rem;
 }
 
 main {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 }
 
-.main__content1 {
+.main__content1, .about__content1, .about__content2 {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  align-items: flex-start;
 }
 
 .main__content2 iframe {
@@ -270,10 +298,9 @@ main {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 1.5rem;
-  padding: 6.25rem 1rem 2rem;
+  gap: 2rem;
+  padding: 5rem  2rem;
   background: var(--secondary-bg-color);
-  margin-top: -5.5rem;
 }
 
 .technologies h2 {
@@ -285,20 +312,23 @@ main {
 
 .technologies__list {
   display: flex;
-  flex-flow: row wrap;
-  gap: 2rem;
+  flex-flow: wrap;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
 .technologies__item {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 5rem;
   height: 5rem;
-  aspect-ratio: 1/1;
   border: 1px solid var(--secondary-border-color);
   border-radius: 50rem;
+  transition: transform 0.3s ease-in-out;
+}
+.technologies__item:hover {
+  transform: scale(1.1);
 }
 
 .technologies__logo {
@@ -314,13 +344,37 @@ main {
 .projects__container {
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 2rem;
+  justify-content: center;
+
 }
 
 .projects__card {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
+  background: var(--primary-bg-color);
+  border: 1px solid var(--primary-border-color);
+  border-radius: 10px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease-in-out;
+}
+.projects__card:hover {
+  transform: scale(1.05);
+}
+
+.projects__note {
+  font-size: 1rem;
+  font-style: italic;
+  text-align: center;
+  color: var(--text-color); /* Ajustado para harmonizar com o tema */
+  background-color: var(--secondary-bg-color); /* Fundo sutil para destaque */
+  padding: 0.5rem;
+  border-radius: 8px; /* Bordas suaves */
+  margin-top: 1rem;
+}
+.projects__note strong {
+  color: var(--primary-color); /* Destaque para "OBS" */
 }
 
 .card__cover {
@@ -397,12 +451,16 @@ main {
 }
 
 .about__photo {
-  width: 90%;
+  width: 100%;
   object-fit: cover;
   object-position: center;
   pointer-events: none;
-  border-radius: 5rem;
+  border-radius: 50px;
   border: 1px solid var(--primary-border-color);
+  transition: transform 0.3s ease-in-out;
+}
+.about__photo:hover {
+  transform: scale(1.05);
 }
 
 .about__description {
@@ -447,7 +505,10 @@ main {
   background: transparent;
   text-align: left;
   cursor: pointer;
-  transition: ease-in-out .3s;
+  transition: 0.3s ease-in-out;
+}
+.accordion__header:hover {
+  background-color: var(--secondary-bg-color);
 }
 
 .accordion__header span {
@@ -474,6 +535,8 @@ main {
   align-items: flex-start;
   gap: 0.625rem;
   border: 1px solid var(--primary-border-color);
+  transition: max-height 0.4s ease-in-out;
+  overflow: hidden;
   }
 
 .accordion__item.active .accordion__header {
@@ -482,24 +545,32 @@ main {
 
 .accordion__item.active .accordion__body {
   display: flex;
+  max-height: 500px;
 }
+
+
 
 .accordion__item.active .bi-caret-down-fill {
   transform: rotate(180deg);
 }
 
+/* Contato */
 .contact {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 1.5rem;
+  padding: 3rem 1rem;
   border-top: 1px solid var(--primary-border-color);
   border-bottom: 1px solid var(--primary-border-color);
 }
-
 .contact p {
   text-align: center;
+  font-size: 1.1rem;
+}
+.contact .email {
+  text-transform: lowercase;
+  font-size: 1.2rem;
 }
 
 .contact .btn {
@@ -517,8 +588,9 @@ footer {
 footer p {
   font-size: 1.25rem;
   text-align: center;
-  padding: 2rem;
-  /*color: gold;*/
+  padding: 3rem 2rem;
+  background-color: var(--primary-bg-color);
+  border-top: 1px solid var(--primary-border-color);
 }
 
 /* Responsividade */
@@ -552,11 +624,12 @@ footer p {
   }
 
   main, .projects, .about {
-    padding: 8rem 6rem 4rem 6rem;
+    padding: 3rem;
+    margin: 20px;
   }
 
   .contact {
-    padding: 6rem;
+    padding: 2rem;
   }
   .contact p {
     width: 80%;
@@ -695,3 +768,5 @@ footer p {
   }
 
 }
+
+
